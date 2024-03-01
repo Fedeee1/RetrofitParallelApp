@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RetrofitParallelApp</string>
+    <string name="txtTitleMain">Usuarios</string>
 </resources>

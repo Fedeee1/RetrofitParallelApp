@@ -16,15 +16,56 @@ para simular que el back no siempre responda con la misma rapidez.
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitparallelapp.data.domain.model.user.UserNameModel
 import com.example.retrofitparallelapp.databinding.ActivityMainBinding
+import com.example.retrofitparallelapp.ui.main.adapter.RecyclerUsersAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(), RecyclerUsersAdapter.OnUserItemClickListener {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.progressLoading.isVisible = true
+        setUpViewModel()
+        viewModel.getListUsers()
     }
+
+    private fun setUpViewModel() {
+
+        var listUsers: List<UserNameModel>
+        lifecycleScope.launch {
+            viewModel.listUsersStateFlow.collect { dataSet ->
+                listUsers = dataSet
+                addRecyclerView(listUsers)
+            }
+        }
+
+    }
+
+    private fun addRecyclerView(
+        listUsers: List<UserNameModel>,
+    ) {
+        val adapter = RecyclerUsersAdapter(listUsers, this, this)
+        binding.recyclerUsers.layoutManager = LinearLayoutManager(this)
+        binding.recyclerUsers.adapter = adapter
+    }
+
+    override fun onUserClick(user: UserNameModel) {
+
+    }
+
 }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetUsersListUseCase @Inject constructor(private val repository: UsersRepository){
-    operator fun invoke(limit: Int, offset: Int): Flow<BaseResponse<ListNamesModel>> {
-        return repository.getListUsers(limit, offset)
+    operator fun invoke(): Flow<BaseResponse<ListNamesModel>> {
+        return repository.getListUsers()
     }
 }
