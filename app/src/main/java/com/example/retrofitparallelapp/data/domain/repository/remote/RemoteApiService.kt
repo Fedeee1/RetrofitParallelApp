@@ -35,7 +35,7 @@ interface RemoteApiService {
     suspend fun postPayroll(
         @Path("id") id: Int
     ): Response<UserPayrollResponse>
-    
+
     @GET("secuence/{id}")
     suspend fun getSecuence(
         @Path("id") id: Int

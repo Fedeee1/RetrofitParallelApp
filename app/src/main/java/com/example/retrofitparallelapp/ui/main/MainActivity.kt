@@ -1,4 +1,4 @@
-package com.example.retrofitparallelapp
+package com.example.retrofitparallelapp.ui.main
 /*
 La idea es que hagáis un listado que muestre los diferentes usuarios.
 Cuando se pulse en un usuario habrá que ir a su detalle, mostrar todos sus datos,
