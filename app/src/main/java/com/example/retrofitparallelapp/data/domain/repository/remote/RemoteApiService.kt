@@ -1,11 +1,13 @@
 package com.example.retrofitparallelapp.data.domain.repository.remote
 
+import com.example.retrofitparallelapp.data.domain.model.user.UserPayrollModel
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.ListNamesResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserJobResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserSalaryResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserSurnameResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -33,7 +35,7 @@ interface RemoteApiService {
 
     @POST("payroll")
     suspend fun postPayroll(
-        @Path("id") id: Int
+        @Body post: UserPayrollModel
     ): Response<UserPayrollResponse>
 
     @GET("secuence/{id}")

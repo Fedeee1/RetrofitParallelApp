@@ -14,18 +14,33 @@ No os rayéis si veis tiempo muy dispares todos los métodos tiene un tiempo de 
 para simular que el back no siempre responda con la misma rapidez.
 */
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitparallelapp.R
+import com.example.retrofitparallelapp.commons.USER_JOB_KEY
+import com.example.retrofitparallelapp.commons.USER_KEY
+import com.example.retrofitparallelapp.commons.USER_SALARY_KEY
+import com.example.retrofitparallelapp.commons.USER_SURNAME_KEY
+import com.example.retrofitparallelapp.data.domain.model.user.UserJobModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserNameModel
+import com.example.retrofitparallelapp.data.domain.model.user.UserSalaryModel
+import com.example.retrofitparallelapp.data.domain.model.user.UserSurnameModel
 import com.example.retrofitparallelapp.databinding.ActivityMainBinding
+import com.example.retrofitparallelapp.ui.fragment_user_details.DetailsUserFragment
 import com.example.retrofitparallelapp.ui.main.adapter.RecyclerUsersAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -53,7 +68,16 @@ class MainActivity : AppCompatActivity(), RecyclerUsersAdapter.OnUserItemClickLi
                 addRecyclerView(listUsers)
             }
         }
-
+        lifecycleScope.launch {
+            viewModel.listUsersErrorSharedFlow.collect { error ->
+                Toast.makeText(this@MainActivity, error.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.isProgressVisibleFlow.collect {
+                binding.progressLoading.isVisible = it
+            }
+        }
     }
 
     private fun addRecyclerView(
@@ -65,7 +89,21 @@ class MainActivity : AppCompatActivity(), RecyclerUsersAdapter.OnUserItemClickLi
     }
 
     override fun onUserClick(user: UserNameModel) {
-
+        openFragment(user)
     }
 
+    @SuppressLint("SuspiciousIndentation")
+    private fun openFragment(
+        user: UserNameModel
+    ) {
+        val bundle = Bundle()
+        bundle.putParcelable(USER_KEY, user)
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = DetailsUserFragment()
+        fragment.arguments = bundle
+        transaction.replace(R.id.fragmentDetails, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 }

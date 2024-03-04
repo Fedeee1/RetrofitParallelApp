@@ -1,4 +1,4 @@
-package com.example.retrofitparallelapp.data.domain.repository.remote.mapper.user
+package com.example.retrofitparallelapp.data.domain.repository.remote.mapper.user.list_users_mapper
 
 import com.example.retrofitparallelapp.data.domain.model.user.ListNamesModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserNameModel

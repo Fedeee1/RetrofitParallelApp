@@ -46,7 +46,6 @@ kapt {
     correctErrorTypes = true
 }
 
-
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -74,5 +73,12 @@ dependencies {
 
     // Fragment
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    //Navegation Component
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.3.2")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.3.2")
+
+    //Shimmer
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 
 }

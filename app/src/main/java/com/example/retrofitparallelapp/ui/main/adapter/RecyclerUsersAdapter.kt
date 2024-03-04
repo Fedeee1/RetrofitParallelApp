@@ -1,6 +1,5 @@
 package com.example.retrofitparallelapp.ui.main.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,7 @@ class RecyclerUsersAdapter @Inject constructor(
         var cardUser: CardView
 
         init {
-            txtUserName = itemView.findViewById(R.id.txtUserName)
+            txtUserName = itemView.findViewById(R.id.viewUserName)
             txtUserId = itemView.findViewById(R.id.txtUserId)
             constraintCardPokemons = itemView.findViewById(R.id.constraintCardUsers)
             cardUser = itemView.findViewById(R.id.cardUser)
