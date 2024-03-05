@@ -9,17 +9,36 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment_user_details.DetailsUserFragment">
 
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:background="@color/purple">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="Detalles de usuario"/>
+
+    </Toolbar>
+
     <ScrollView
         android:id="@+id/scrollFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp"
+        android:layout_marginTop="50dp"
+        tools:visibility="visible"
         android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            tools:visibility="visible"
             android:visibility="gone">
 
             <TextView
@@ -30,20 +49,20 @@
                 android:text="Nombre"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/txtUserJob"
+                android:id="@+id/txtUserJobTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Trabajo"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/darkPurple"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,18 +70,133 @@
                 app:layout_constraintTop_toBottomOf="@id/txtUserName"/>
 
             <TextView
-                android:id="@+id/txtUserSalary"
+                android:id="@+id/txtUserJob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Trabajo"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserJobTitle"/>
+
+            <TextView
+                android:id="@+id/txtUserCompanyTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Salario"
+                android:text="Compañía"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/darkPurple"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtUserJob"/>
+
+            <TextView
+                android:id="@+id/txtUserCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Compañía"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserCompanyTitle"/>
+
+            <TextView
+                android:id="@+id/txtUserSalaryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Salario"
+                android:textAlignment="center"
+                android:textColor="@color/darkPurple"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserCompany"/>
+
+            <TextView
+                android:id="@+id/txtUserSalary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Salario"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserSalaryTitle"/>
+
+            <TextView
+                android:id="@+id/txtUserTaxTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Impuesto"
+                android:textAlignment="center"
+                android:textColor="@color/darkPurple"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserSalary"/>
+
+            <TextView
+                android:id="@+id/txtUserTax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Impuesto"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserTaxTittle"/>
+
+
+            <TextView
+                android:id="@+id/txtUserFormationTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Formación"
+                android:textAlignment="center"
+                android:textColor="@color/darkPurple"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserTax"/>
+
+            <TextView
+                android:id="@+id/txtUserFormation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Formación"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtUserFormationTittle"/>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +212,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintFragmentLoading"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_marginTop="50dp" android:layout_height="match_parent"
             android:visibility="visible">
 
             <View
@@ -92,9 +226,9 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <View
-                android:id="@+id/viewUserJob"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
+                android:id="@+id/view1"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/gray"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,14 +236,84 @@
                 app:layout_constraintTop_toBottomOf="@id/viewUserName"/>
 
             <View
-                android:id="@+id/viewUserSalary"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:id="@+id/view2"
+                android:layout_width="300dp"
+                android:layout_height="15dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewUserJob"/>
+                app:layout_constraintTop_toBottomOf="@id/view1"/>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view2"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="300dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view3"/>
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4"/>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="300dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view5"/>
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view6"/>
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="300dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view7"/>
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="200dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view8"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

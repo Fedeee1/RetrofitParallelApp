@@ -76,15 +76,11 @@ class DetailsUserFragment : Fragment() {
                 viewModel.usersSalaryStateFlow.collect { dataSet ->
                     userSalary = dataSet
                     binding.txtUserName.text = "${user.name.replaceFirstChar { it.uppercaseChar()}} ${userSurname.surname.replaceFirstChar { it.uppercaseChar() }}"
-                    binding.txtUserJob.text =
-                        "Trabajo: ${
-                            userJob.job.replaceFirstChar { it.uppercaseChar() }
-                        }\n" +
-                                "Companía: ${
-                                    userJob.company.replaceFirstChar { it.uppercaseChar() }
-                                }"
-                    binding.txtUserSalary.text =
-                        "Salario: ${userSalary.salary}\nTax: ${userSalary.tax}\nFormación: ${userSalary.formation}"
+                    binding.txtUserJob.text = userJob.job.replaceFirstChar { it.uppercaseChar() }
+                    binding.txtUserCompany.text = userJob.company.replaceFirstChar { it.uppercaseChar()}
+                    binding.txtUserSalary.text = userSalary.salary
+                    binding.txtUserTax.text = userSalary.tax.toString()
+                    binding.txtUserFormation.text = userSalary.formation.toString()
 
                 }
                 viewModel.usersSalaryErrorSharedFlow.collect { error ->
