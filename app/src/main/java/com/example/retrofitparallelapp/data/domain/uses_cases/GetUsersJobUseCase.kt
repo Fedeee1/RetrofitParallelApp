@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetUsersJobUseCase @Inject constructor(private val repository: UsersRepository){
-    operator fun invoke(id: Int): Flow<BaseResponse<UserJobModel>> {
+    suspend operator fun invoke(id: Int): BaseResponse<UserJobModel> {
         return repository.getUsersJob(id)
     }
 }

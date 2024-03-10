@@ -9,6 +9,7 @@ import com.example.retrofitparallelapp.data.domain.model.user.UserSurnameModel
 import com.example.retrofitparallelapp.data.domain.repository.remote.UserService
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.BaseResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserJobResponse
+import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollRequest
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -17,17 +18,17 @@ class UsersRepository @Inject constructor(private val api: UserService) {
     fun getListUsers(): Flow<BaseResponse<ListNamesModel>> {
         return api.getListUsers()
     }
-    fun getUsersSurname(id: Int): Flow<BaseResponse<UserSurnameModel>> {
+    suspend fun getUsersSurname(id: Int): BaseResponse<UserSurnameModel> {
         return api.getUsersSurname(id)
     }
-    fun getUsersJob(id: Int): Flow<BaseResponse<UserJobModel>> {
+    suspend fun getUsersJob(id: Int): BaseResponse<UserJobModel> {
         return api.getUsersJob(id)
     }
-    fun getUsersSalary(id: Int): Flow<BaseResponse<UserSalaryModel>> {
+    suspend fun getUsersSalary(id: Int): BaseResponse<UserSalaryModel> {
         return api.getUsersSalary(id)
     }
 
-    fun postUsersPayroll(user: UserPayrollModel): Flow<BaseResponse<UserPayrollModel>> {
+    suspend fun postUsersPayroll(user: UserPayrollRequest): BaseResponse<UserPayrollModel> {
         return api.postUsersPayroll(user)
     }
 }

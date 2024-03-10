@@ -6,6 +6,7 @@ import com.example.retrofitparallelapp.data.domain.repository.remote.response.Ba
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.ListNamesResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserJobResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserNameResponse
+import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollRequest
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserSalaryResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserSurnameResponse
@@ -20,7 +21,7 @@ class ApiCallService @Inject constructor() : BaseApiCallService() {
         }
     }
 
-    suspend fun getUsersSurname(id: Int): BaseResponse<UserSurnameResponse> {
+   suspend fun getUsersSurname(id: Int): BaseResponse<UserSurnameResponse> {
         return apiCall {
             provideApiServices().getSurname(id)
         }
@@ -38,9 +39,9 @@ class ApiCallService @Inject constructor() : BaseApiCallService() {
         }
     }
 
-    suspend fun postUsersPayroll(userPayrollModel: UserPayrollModel): BaseResponse<UserPayrollResponse> {
+    suspend fun postUsersPayroll(userPayrollRequest: UserPayrollRequest): BaseResponse<UserPayrollResponse> {
         return apiCall {
-            provideApiServices().postPayroll(userPayrollModel)
+            provideApiServices().postPayroll(userPayrollRequest)
         }
     }
 }

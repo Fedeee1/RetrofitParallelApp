@@ -13,11 +13,13 @@ import androidx.lifecycle.lifecycleScope
 import com.example.retrofitparallelapp.commons.USER_KEY
 import com.example.retrofitparallelapp.data.domain.model.user.UserJobModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserNameModel
+import com.example.retrofitparallelapp.data.domain.model.user.UserPayrollModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserSalaryModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserSurnameModel
 import com.example.retrofitparallelapp.databinding.FragmentDetailsUserBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @Suppress("UNREACHABLE_CODE")
@@ -29,6 +31,7 @@ class DetailsUserFragment : Fragment() {
     private var userSurname = UserSurnameModel("", "")
     private var userJob = UserJobModel("", "")
     private var userSalary = UserSalaryModel("", 0.0, 0.0)
+    private var userPayroll = UserPayrollModel("", "","", 0.0, 0.0)
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -38,8 +41,8 @@ class DetailsUserFragment : Fragment() {
         val user = arguments?.getParcelable<UserNameModel>(USER_KEY)
         binding = FragmentDetailsUserBinding.inflate(inflater, container, false)
 
-        setUpViewModel(user!!)
-
+        setUpViewModel()
+        viewModel.getUserDetails(user?.id!!)
         binding.btnBack.setOnClickListener {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
@@ -48,34 +51,45 @@ class DetailsUserFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setUpViewModel(user: UserNameModel) {
+    private fun setUpViewModel() {
         lifecycleScope.launch {
-            val deferred1 = async {
                 viewModel.usersSurnameStateFlow.collect { dataSet ->
                     userSurname = dataSet
                 }
                 viewModel.usersSurnameErrorSharedFlow.collect { error ->
                     Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
-                }
             }
-            deferred1.await()
         }
         lifecycleScope.launch {
-            val deferred2 = async {
                 viewModel.usersJobStateFlow.collect { dataSet ->
                     userJob = dataSet
                 }
                 viewModel.usersJobErrorSharedFlow.collect { error ->
                     Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
-                }
             }
-            deferred2.await()
         }
         lifecycleScope.launch {
-            val deferred3 = async {
                 viewModel.usersSalaryStateFlow.collect { dataSet ->
                     userSalary = dataSet
-                    binding.txtUserName.text = "${user.name.replaceFirstChar { it.uppercaseChar()}} ${userSurname.surname.replaceFirstChar { it.uppercaseChar() }}"
+                }
+                viewModel.usersSalaryErrorSharedFlow.collect { error ->
+                    Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+        lifecycleScope.launch {
+                viewModel.usersPayrollStateFlow.collect { dataSet ->
+                    userPayroll = dataSet
+                    binding.txtUserTotal.text = userPayroll.total.toString()
+                }
+                viewModel.usersPayrollErrorSharedFlow.collect { error ->
+                    Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.isShimmerVisibleFlow.collect { dataSet ->
+                binding.shimmerLoading.isVisible = dataSet
+                if (!dataSet){
+                    binding.txtUserName.text = "${userSurname.name.replaceFirstChar { it.uppercaseChar()}} ${userSurname.surname.replaceFirstChar { it.uppercaseChar() }}"
                     binding.txtUserJob.text = userJob.job.replaceFirstChar { it.uppercaseChar() }
                     binding.txtUserCompany.text = userJob.company.replaceFirstChar { it.uppercaseChar()}
                     binding.txtUserSalary.text = userSalary.salary
@@ -83,30 +97,8 @@ class DetailsUserFragment : Fragment() {
                     binding.txtUserFormation.text = userSalary.formation.toString()
 
                 }
-                viewModel.usersSalaryErrorSharedFlow.collect { error ->
-                    Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-            deferred3.await()
-        }
-
-        lifecycleScope.launch {
-            viewModel.isShimmerVisibleFlow.collect {
-                binding.constraintFragmentLoading.isVisible = it
-                binding.scrollFragment.isVisible = !it
-                binding.constraintFragment.isVisible = !it
+                binding.constraintFragment.isVisible = !dataSet
             }
         }
-
-        if (!binding.constraintFragmentLoading.isVisible){
-
-        }
-
-        lifecycleScope.launch {
-            viewModel.getUsersSurname(user.id)
-            viewModel.getUsersJob(user.id)
-            viewModel.getUsersSalary(user.id)
-        }
-
     }
 }
