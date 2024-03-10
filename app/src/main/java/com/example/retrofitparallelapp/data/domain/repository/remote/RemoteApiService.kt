@@ -1,6 +1,5 @@
 package com.example.retrofitparallelapp.data.domain.repository.remote
 
-import com.example.retrofitparallelapp.data.domain.model.user.UserPayrollModel
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.ListNamesResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserJobResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollRequest

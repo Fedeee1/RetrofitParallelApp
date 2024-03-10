@@ -3,4 +3,14 @@
     <string name="txtTitleMain">Usuarios</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtUserNameCardView">Nombre de usuario</string>
+    <string name="txtIdUserCardView">Id</string>
+    <string name="btnBack">Regresar</string>
+    <string name="txtName">Nombre</string>
+    <string name="txtJob">Trabajo</string>
+    <string name="txtCompany">Compañía</string>
+    <string name="txtSalary">Salario</string>
+    <string name="txtTax">Impuesto</string>
+    <string name="txtFormation">Formación</string>
+    <string name="txtTotal">Total</string>
 </resources>

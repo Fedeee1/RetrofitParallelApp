@@ -9,12 +9,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitparallelapp.R
 import com.example.retrofitparallelapp.data.domain.model.user.UserNameModel
-import com.example.retrofitparallelapp.ui.main.MainActivity
 import javax.inject.Inject
 
 class RecyclerUsersAdapter @Inject constructor(
     private var listUsers: List<UserNameModel>,
-    private var activity: MainActivity,
     private val listener: OnUserItemClickListener):
     RecyclerView.Adapter<RecyclerUsersAdapter.ViewHolder>() {
 

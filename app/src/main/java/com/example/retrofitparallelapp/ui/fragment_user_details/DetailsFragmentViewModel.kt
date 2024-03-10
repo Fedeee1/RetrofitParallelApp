@@ -15,7 +15,6 @@ import com.example.retrofitparallelapp.data.domain.uses_cases.GetUsersJobUseCase
 import com.example.retrofitparallelapp.data.domain.uses_cases.GetUsersSalaryUseCase
 import com.example.retrofitparallelapp.data.domain.uses_cases.PostUsersPayrollUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
@@ -74,7 +73,7 @@ class DetailsFragmentViewModel @Inject constructor(
     }
 
     private val usersSurnameMutableStateFlow =
-        MutableStateFlow<UserSurnameModel>(UserSurnameModel("", ""))
+        MutableStateFlow(UserSurnameModel("", ""))
     val usersSurnameStateFlow: StateFlow<UserSurnameModel> = usersSurnameMutableStateFlow
 
     private val usersSurnameErrorMutableSharedFlow = MutableSharedFlow<ErrorModel>()

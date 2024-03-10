@@ -4,7 +4,6 @@ import com.example.retrofitparallelapp.data.domain.UsersRepository
 import com.example.retrofitparallelapp.data.domain.model.user.UserPayrollModel
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.BaseResponse
 import com.example.retrofitparallelapp.data.domain.repository.remote.response.user.UserPayrollRequest
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PostUsersPayrollUseCase @Inject constructor(private val repository: UsersRepository){

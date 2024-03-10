@@ -18,11 +18,9 @@ import com.example.retrofitparallelapp.data.domain.model.user.UserSalaryModel
 import com.example.retrofitparallelapp.data.domain.model.user.UserSurnameModel
 import com.example.retrofitparallelapp.databinding.FragmentDetailsUserBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-@Suppress("UNREACHABLE_CODE")
+@Suppress("UNREACHABLE_CODE", "DEPRECATION")
 @AndroidEntryPoint
 class DetailsUserFragment : Fragment() {
 
