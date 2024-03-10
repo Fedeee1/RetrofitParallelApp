@@ -18,7 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
+        buildConfigField("String", "BASE_URL", "\"https://mock-movilidad.vass.es/api/formacion/\"")
     }
 
     buildTypes {
@@ -45,7 +45,6 @@ android {
 kapt {
     correctErrorTypes = true
 }
-
 
 dependencies {
 
@@ -74,5 +73,12 @@ dependencies {
 
     // Fragment
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    //Navegation Component
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.3.2")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.3.2")
+
+    //Shimmer
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 
 }
